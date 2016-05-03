@@ -1,50 +1,49 @@
 #include "iq.h"
+#include "it.h"
 #define byte unsigned char
 
-byte *trisb = 0xf93 ;
-byte *portb = 0xf81 ;
-byte *trisd = 0xf95 ;
-byte *portd = 0xf83 ;
+/* variables globale */
+byte *trisb = 0xf93 ;
+byte *portb = 0xf81 ;
+byte *trisd = 0xf95 ;
+byte *portd = 0xf83 ;
+int i=0;
+int nb=0;
+void affiche_7seg(byte);
+/* interruption sur front montant RB0 */
+void it_int0()
+{
+	if(i<9)i++;
+	else i = 0;
+}
 
-/* a compléter */
+/* interruption sur front montant RB1 */
+void it_int1()
+{
+	if(i>0)i--;
+	else i = 9;
+}
+
+void it_tmr0()
+{
+
+}
 
 void affiche_7seg(byte val)
 {
-byte tab_7seg[]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,
-			0b01111101,0b00000111,0b01111111,0b01101111};
+byte
+tab_7seg[]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,0b01111101,0b00000111,0b01111111,0b01101111};
 *portd=tab_7seg[val];
-}
-
-int test_plus()
-{
-/* A compléter */
-/* Sik has modified this*/
-	if (*portb%2==1) return 1;
-	else return 0;
-}
-
-int test_moins()
-{
-	if (*portb==2) return 1;
-	else return 0;
 }
 
 void main(void)
 {
-int i=0;
-*trisd = 0 ;
+*trisd = 0 ;
 *trisb = 0xff;
+init_it_int0();
+init_it_int1();
 affiche_7seg(i);
-//for(i=0;i<4;i++)
 while(1){
-	while (test_moins());
-	while (! test_moins()); ;
-
-	if (i > 0) i--;
-		else i=9;
-
 	affiche_7seg(i);
 }
-
-while(1) ;
-} 
+}
