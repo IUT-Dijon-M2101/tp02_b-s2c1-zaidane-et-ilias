@@ -19,6 +19,8 @@ int test_plus()
 {
 /* A compléter */
 /* Sik has modified this*/
+	if (*portb%2==1) return 1;
+	else return 0;
 }
 
 
