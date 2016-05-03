@@ -26,7 +26,9 @@ void it_int1()
 
 void it_tmr0()
 {
-
+	if(i<9)i++;
+	else i = 0;
+	delayms(1000);
 }
 
 void affiche_7seg(byte val)
@@ -38,6 +40,7 @@ tab_7seg[]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b01101101,0b
 
 void main(void)
 {
+init_it_tmr0();
 *trisd = 0 ;
 *trisb = 0xff;
 init_it_int0();
