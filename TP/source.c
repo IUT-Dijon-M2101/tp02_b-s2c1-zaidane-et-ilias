@@ -23,12 +23,6 @@ int test_plus()
 	else return 0;
 }
 
-int test_moins()
-{
-	if (*portb==2) return 1;
-	else return 0;
-}
-
 
 void main(void)
 {
@@ -38,11 +32,11 @@ int i=0;
 affiche_7seg(i);
 //for(i=0;i<4;i++)
 while(1){
-	while (test_moins());
-	while (! test_moins()); ;
+	while (test_plus());
+	while (! test_plus()); ;
 
-	if (i >0) i--;
-		else i=9;
+	if (i < 9) i++;
+		else i=0;
 
 	affiche_7seg(i);
 }
