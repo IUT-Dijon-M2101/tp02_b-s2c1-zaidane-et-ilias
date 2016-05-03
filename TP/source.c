@@ -18,6 +18,7 @@ byte tab_7seg[]={0b00111111,0b00000110,0b01011011,0b01001111,0b01100110,0b011011
 int test_plus()
 {
 /* A compléter */
+/* Sik has modified this*/
 }
 
 
